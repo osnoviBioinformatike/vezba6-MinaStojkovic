@@ -1,0 +1,1 @@
+b712f6fbd7a3d16746b162a98c210d1c  ./GCF_021057265.1_ASM2105726v1_genomic.fna.gz

@@ -25,7 +25,6 @@ Terminologija
 1. Proverite da li je na računaru prisutno conda okruženje *kleborate* i u njemu instaliran alat Kleborate:
 
 ```bash
-conda activate kleborate
 kleborate --version
 kleborate --help | head
 # Ako se pojavi Usage: i lista opcija – alat je spreman.
@@ -72,7 +71,6 @@ data/
 
 ## Zadatak 2 - preuzimanje genoma i integritet fajlova
 
-
 1. Sve informacije o zadatom Klebsiella genomu se nalaze na URL="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/". Fajlovi od interesa su:
 
 ```bash
@@ -81,6 +79,7 @@ GCF_021057265.1_ASM2105726v1_genomic.gff.gz
 md5checksums.txt
 uncompressed_checksums.txt
 ```
+
 2. Napravite folder *klebsiella_genome* u korenu repozitorije i udjite u taj folder.
 
 3. Pomoću *wget* komande preuzmite 3 prethodno navedena fajla.
@@ -91,9 +90,7 @@ uncompressed_checksums.txt
 
 6. Koristeći *md5sum* komandu proverite integritet za zadati genom (kompresovanu verziju). 
 
-
 ## Zadatak 3 - pravljenje arhive od *klebsiella_genome* foldera
-
 
 1. U *klebsiella_genome* folderu napravite foldere *genomes* i *annotations*
 
@@ -104,7 +101,6 @@ uncompressed_checksums.txt
 4. Kreirajte *klebsiella_archive.tar.gz* od *klebsiella_genome* foldera.
 
 5. Proverite sadrzaj *klebsiella_archive.tar.gz* bez raspakivanja arhive.
-
 
 ## Zadatak 4 - automatizacija preuzimanja genoma i pravljenja arhive
 

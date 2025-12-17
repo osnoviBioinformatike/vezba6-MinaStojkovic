@@ -74,17 +74,55 @@ done
 ### 2 - uneti komande
 
 ```bash
-
+2.2 mkdir klebsiella_genome && cd klebsiella_genome/
+2.3 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/GCF_021057265.1_ASM2105726v1_genomic.fna.gz
+# moze ovako jedan po jedan
+ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/uncompressed_checksums.txt https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/md5checksums.txt
+# moze ovako da se kopira link samo uvek i odvoji se razmakom
+BASE_URL="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265"
+wget "${BASE_URL}/md5checksums.txt"
+wget "${BASE_URL}/uncompressed_checksums.txt"
+#moze da se napravi ekspanzija (promenljiva) 
+2.4 gunzip -k GCF_021057265.1_ASM2105726v1_genomic.fna.gz 
+gunzip -k GCF_021057265.1_ASM2105726v1_genomic.gff.gz
+2.5 grep "b712f6fbd7a3d16746b162a98c210d1c" md5checksums.txt > genom_compressed.txt
+2.6 md5sum GCF_021057265.1_ASM2105726v1_genomic.fna
 ```
 
 ### 3 - uneti komande
 
 ```bash
-
+3.1 mkdir genoms anotations
+3.2 mv GCF_021057265.1_ASM2105726v1_genomic.gff.gz annotations/
+mv GCF_021057265.1_ASM2105726v1_genomic.fna.gz genoms
+3.3 cd ..
+3.4 tar -czf klebsiella_genome.tar.gz klebsiella_genome/
+3.5 tar -tzf klebsiella_genome.tar.gz
 ```
 
 ### 4 - uneti komande i sadrzaj klebsiella_download_archive.sh fajla
 
 ```bash
+4.1 mkdir scripts && cd scripts
+touch klebsiella_download_archive.sh
+4.3 #u nano:
+!/usr/bin/env bash
 
+mkdir klebsiella_genome && cd klebsiella_genome/
+BASE_URL="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/"
+wget "${BASE_URL}/md5checksums.txt"
+wget "${BASE_URL}/uncompressed_checksums.txt"
+wget "${BASE_URL}/GCF_021057265.1_ASM2105726v1_genomic.fna.gz"
+wget "${BASE_URL}/GCF_021057265.1_ASM2105726v1_genomic.gff.gz"
+gunzip -k GCF_021057265.1_ASM2105726v1_genomic.fna.gz 
+gunzip -k GCF_021057265.1_ASM2105726v1_genomic.gff.gz
+mkdir genoms anotations
+mv GCF_021057265.1_ASM2105726v1_genomic.gff.gz anotations/
+mv GCF_021057265.1_ASM2105726v1_genomic.fna.gz genoms
+cd ..
+tar -czf klebsiella_genome.tar.gz klebsiella_genome/
+tar -tzf klebsiella_genome.tar.gz
+
+4.4 chmode +x klebsiella_download_archive.sh 
+./
 ```
